@@ -1,5 +1,8 @@
 import { PATH_NEWS, PATH_ABOUT_GROUP, PATH_TIMETABLE } from "../../paths"
 
+const ENABLE_IS_ADMIN = "ENABLE_IS_ADMIN"
+const DISABLE_IS_ADMIN = "DISABLE_IS_ADMIN"
+
 const initialState = {
     arrayMenu: [
         {
@@ -12,11 +15,30 @@ const initialState = {
         },
         {
             path: PATH_NEWS,
-            text: "новости"
+            text: "Новости"
         }
-    ]
+    ],
+    adminMode: false
 }
 
-const reducerHeader = (state=initialState, action) => state
+const reducerHeader = (state=initialState, action) => {
+    switch(action.type){
+        case ENABLE_IS_ADMIN:
+            return {
+                ...state,
+                adminMode: true
+            }
+        case DISABLE_IS_ADMIN:
+            return{
+                ...state,
+                adminMode: false
+            }
+        default:
+            return state
+    }
+}
 
 export default reducerHeader
+
+export const enableAdminModeActionCreator = () => ({type: ENABLE_IS_ADMIN})
+export const disableAdminModeActionCreator = () => ({type: DISABLE_IS_ADMIN})

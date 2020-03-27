@@ -5,7 +5,7 @@ import reducerNews from './reducers/reducerNews';
 import reducerHeader from './reducers/reducerHeader';
 
 const reducer = combineReducers({
-    stateAoutGroup: reducerAboutGroup,
+    stateAboutGroup: reducerAboutGroup,
     stateTimetable: reducerTimetable,
     stateNews: reducerNews,
     stateHeader: reducerHeader

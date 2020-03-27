@@ -1,0 +1,90 @@
+.wrap{
+     background-color: white;
+     padding: 5px 10px;
+     text-transform: uppercase;
+     margin-bottom: 15px;
+}
+
+.menu_input{
+     display: none;
+}
+
+.wrap ul{
+     display: flex;
+     justify-content: center;
+}
+
+.wrap li a{
+     padding: 0 3px;
+}
+
+.wrap li:not(:first-child){
+     margin-left: 20px;
+}
+
+.active{
+     background-color: #fabb34;
+}
+
+.admin{
+     background-color: #f23f3f;
+}
+
+.user{
+     background-color: #439cfa;
+}
+
+@media screen and (max-width: 855px){
+     .wrap{
+          font-size: 11pt;
+     }
+}
+
+@media screen and (max-width: 795px){
+     .wrap{
+          font-size: 10pt;
+     }
+}
+
+@media screen and (max-width: 536px){
+     .wrap ul{
+          display: block; 
+          text-align: center  ;
+     }
+
+     .toggle_menu{
+          display: block;
+          text-align: center;
+          cursor: pointer;
+     }
+
+     ul li{
+          margin-top: 3px;
+     }
+
+     ul li:not(:last-child){
+          display: none;
+     }
+
+     .toggle_menu::after{
+          content: attr(data-open);
+     }
+
+     .menu_input:checked + .toggle_menu + ul li:not(:last-child){
+          display: block;
+     }
+
+     .menu_input:checked + .toggle_menu::after{
+          content: attr(data-close);
+     }
+
+     .wrap li:not(:first-child){
+          margin-left: 0;
+     }
+}
+
+@media screen and (max-width: 200px){
+     .wrap{
+          font-size: 9pt;
+     }
+}
