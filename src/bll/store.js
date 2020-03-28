@@ -1,8 +1,9 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 import reducerAboutGroup from './reducers/reducerAboutGroup';
 import reducerTimetable from './reducers/reducerTimetable';
 import reducerNews from './reducers/reducerNews';
 import reducerHeader from './reducers/reducerHeader';
+import thunk from "redux-thunk";
 
 const reducer = combineReducers({
     stateAboutGroup: reducerAboutGroup,
@@ -11,6 +12,6 @@ const reducer = combineReducers({
     stateHeader: reducerHeader
 })
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 
 export default store

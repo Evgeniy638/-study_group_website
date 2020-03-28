@@ -1,0 +1,33 @@
+.wrap{
+     background-color: white;
+     margin-bottom: 15px;
+     padding: 15px;
+}
+
+.wrap img{
+     display: block;
+     max-width: 640px;
+     width: 80%;
+     margin: 10px auto 0 auto;
+}
+
+.date{
+     color: #9e9e9e;
+     text-align: right;
+}
+
+.wrap p{
+     font-size: 12pt;
+}
+
+@media screen and (max-width:603px){
+     .wrap p{
+          font-size: 11pt;
+     }
+}
+
+@media screen and (max-width:350px){
+     .wrap p{
+          font-size: 10pt;
+     }
+}

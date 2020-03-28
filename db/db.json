@@ -1,9 +1,124 @@
 {
-  "posts": [
+  "news": [
     {
-      "title": "study",
-      "author": "Artem",
+      "text": "study",
+      "date": 864450000,
+      "image": "https://kor.ill.in.ua/m/1200x0/2463298.jpg",
+      "id": 1
+    },
+    {
+      "text": "",
+      "date": 86400000,
+      "image": "https://kor.ill.in.ua/m/1200x0/2463298.jpg",
       "id": 2
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": "",
+      "id": 3
+    },
+    {
+      "text": "blalbalablabllblablabalabllbalablb aablblabl albalbl lablbl alblal albbla llbabl lalbal",
+      "date": 86400000,
+      "image": null,
+      "id": 4
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": null,
+      "id": 5
+    },
+    {
+      "text": "солнышко",
+      "date": 86435000,
+      "image": "https://kor.ill.in.ua/m/1200x0/2463298.jpg",
+      "id": 6
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": null,
+      "id": 7
+    },
+    {
+      "text": "blalbalablabllblablabalabllbalablb aablblabl albalbl lablbl alblal albbla llbabl lalbal",
+      "date": 86400000,
+      "image": null,
+      "id": 8
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": null,
+      "id": 9
+    },
+    {
+      "text": "blalbalablabllblablabalabllbalablb aablblabl albalbl lablbl alblal albbla llbabl lalbal",
+      "date": 86400000,
+      "image": null,
+      "id": 10
+    },
+    {
+      "text": "study",
+      "date": 864450000,
+      "image": "https://kor.ill.in.ua/m/1200x0/2463298.jpg",
+      "id": 11
+    },
+    {
+      "text": "",
+      "date": 86400000,
+      "image": "https://kor.ill.in.ua/m/1200x0/2463298.jpg",
+      "id": 12
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": "",
+      "id": 13
+    },
+    {
+      "text": "blalbalablabllblablabalabllbalablb aablblabl albalbl lablbl alblal albbla llbabl lalbal",
+      "date": 86400000,
+      "image": null,
+      "id": 14
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": null,
+      "id": 15
+    },
+    {
+      "text": "солнышко",
+      "date": 86435000,
+      "image": "https://kor.ill.in.ua/m/1200x0/2463298.jpg",
+      "id": 16
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": null,
+      "id": 17
+    },
+    {
+      "text": "blalbalablabllblablabalabllbalablb aablblabl albalbl lablbl alblal albbla llbabl lalbal",
+      "date": 86400000,
+      "image": null,
+      "id": 18
+    },
+    {
+      "text": "study",
+      "date": 86400000,
+      "image": null,
+      "id": 19
+    },
+    {
+      "text": "blalbalablabllblablabalabllbalablb aablblabl albalbl lablbl alblal albbla llbabl lalbal",
+      "date": 86400000,
+      "image": null,
+      "id": 20
     }
   ],
   "comments": [],
