@@ -3,13 +3,17 @@ import style from './SearchElement.module.css'
 
 const SearchElement = (props) => {
      const handler = (event) => {
-          props.clearNews()
+          props.setTextFilter(event.currentTarget.value)
+     }
 
-          //если нажали на backspace
-          if(event.nativeEvent.data === null && props.textFilter.length !== 0){
-               props.setTextFilter(props.textFilter.substring(0, props.textFilter.length - 1))
-          }else if (event.nativeEvent.data !== null){
-               props.setTextFilter(props.textFilter + event.nativeEvent.data)
+     const searchWithFilter = () => {
+          props.disableSearchButton()
+          props.changeCurrentPageAndRemoveNews(1)
+     }
+
+     const handlerEnterPress = (event) => {
+          if(event.charCode === 13){
+               searchWithFilter()
           }
      }
 
@@ -20,8 +24,9 @@ const SearchElement = (props) => {
                          type="text"
                          placeholder="Поиск по тексту"
                          className={style.search_text}
-                         value={props.textFilter}
                          onChange={handler}
+                         value={props.textFilter}
+                         onKeyPress={handlerEnterPress}
                     />
                     <div className={style.search_icon}>
                          <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,6 +36,11 @@ const SearchElement = (props) => {
                                    fill="#999999"></rect>
                          </svg>
                     </div>
+                    <button 
+                         className={`button ${style.search_button}`}
+                         disabled={props.isDisabledSearchButton}
+                         onClick={searchWithFilter}
+                    >Найти</button>
                </div>
           </div>
      )

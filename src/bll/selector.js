@@ -11,3 +11,5 @@ export const getListNews = state => state.stateNews.news
 export const getIsAllNews = state => state.stateNews.isAllNews
 
 export const getTextFilter = state => state.stateNews.textFilter
+
+export const getIsDisabledSearchButton = state => state.stateNews.isDisabledSearchButton

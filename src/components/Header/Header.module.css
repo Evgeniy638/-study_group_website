@@ -1,6 +1,6 @@
 .wrap{
      background-color: white;
-     padding: 5px 10px;
+     padding: 7px 10px;
      text-transform: uppercase;
      margin-bottom: 15px;
 }
@@ -23,18 +23,22 @@
 }
 
 .active{
-     background-color: #fabb34;
+     border-bottom: 3px solid black;
 }
 
-.admin{
-     background-color: #f23f3f;
+.wrap .admin{
+     padding: 3px;
+     background-color: black;
+     color: white;
 }
 
-.user{
-     background-color: #439cfa;
+.wrap .user{
+     padding: 3px;
+     background-color: #999999;
+     color: black;
 }
 
-@media screen and (max-width: 855px){
+@media screen and (max-width: 871px){
      .wrap{
           font-size: 11pt;
      }
@@ -58,11 +62,15 @@
           cursor: pointer;
      }
 
-     ul li{
-          margin-top: 3px;
+     .wrap ul li{
+          margin-top: 7px;
      }
 
-     ul li:not(:last-child){
+     .wrap ul li:last-child{
+          margin-top: 11px;
+     }
+
+     .wrap ul li:not(:last-child){
           display: none;
      }
 

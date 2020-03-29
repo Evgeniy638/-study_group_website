@@ -8,6 +8,7 @@ body{
      width: 80%;
      margin: 0 auto;
      font-size: 12pt;
+     overflow-y: scroll;
 }
 
 a{
@@ -23,13 +24,25 @@ li{
      list-style: none;
 }
 
-@media screen and (max-width: 745px){
+.button{
+     box-sizing: border-box;
+     padding: 3px;
+     cursor: pointer;
+     border: 0.1px #a8a8a8 solid;
+     background: linear-gradient(135deg, white, #e3e3e3);
+}
+
+.button:hover{
+     border-color: black;
+}
+
+@media screen and (max-width: 750px){
      body{
           width: 90%;
      }
 }
 
-@media screen and (max-width: 653px){
+@media screen and (max-width: 669px){
      body{
           width: 100%;
      }

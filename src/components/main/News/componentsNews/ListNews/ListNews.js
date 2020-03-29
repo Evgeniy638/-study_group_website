@@ -1,12 +1,18 @@
 import React from 'react'
-import New from './New/New'
+import NewContainer from './New/NewContainer'
 
 const ListNews = (props) => (
-     <div>
+     <ul>
           {props.news.map((item, index) => (
-               <New key={index} image={item.image} text={item.text} date={item.date}/>
+               <NewContainer 
+                    key={index} 
+                    image={item.image} 
+                    text={item.text} 
+                    date={item.date}
+                    id={item.id}
+               />
           ))}
-     </div>
+     </ul>
 )
 
 export default ListNews

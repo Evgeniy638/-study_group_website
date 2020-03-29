@@ -40,12 +40,17 @@
      width: 20px;
 }
 
+.search_button{
+     font-size: 14pt;
+     padding: 0 5px;
+}
+
 @media screen and (max-width: 831px){
      .wrap > div{
           width: 95%;
      }
 
-     .search_text{
+     .search_text, .search_button{
           font-size: 13pt;
      }
 
@@ -56,7 +61,7 @@
 }
 
 @media screen and (max-width:795px){
-     .search_text{
+     .search_text, .search_button{
           font-size: 12pt;
      }
 
@@ -67,7 +72,7 @@
 }
 
 @media screen and (max-width:603px){
-     .search_text{
+     .search_text, .search_button{
           font-size: 11pt;
      }
 
@@ -78,7 +83,7 @@
 }
 
 @media screen and (max-width:350px){
-     .search_text{
+     .search_text, .search_button{
           font-size: 10pt;
      }
 
