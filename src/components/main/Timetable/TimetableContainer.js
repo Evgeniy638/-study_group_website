@@ -1,6 +1,19 @@
 import { connect } from "react-redux"
-import Timetable from './Timetable';
+import { getTimetableByState } from "../../../bll/selector";
+import { getTimetableThunkCreator, clearDataTimetableActionCreator } from "../../../bll/reducers/reducerTimetable";
+import TimetableClassContainer from "./TimetableClassContainer";
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+     timetable: getTimetableByState(state)
+})
 
-export default connect(mapStateToProps)(Timetable)
+const mapDispatchToProps = (dispatch) => ({
+     getTimetable(timetable){
+          dispatch(getTimetableThunkCreator(timetable))
+     },
+     clearData(){
+          dispatch(clearDataTimetableActionCreator())
+     }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimetableClassContainer)

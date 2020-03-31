@@ -1,0 +1,116 @@
+.wrap{
+     background-color: white;
+     padding: 10px 0;
+}
+.wrap table{
+     width: 60%;
+     margin: 0 auto;
+}
+
+.wrap caption{
+     font-size: 16pt;
+}
+
+.wrap td{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+
+.wrap tr{
+     display: grid;
+     grid-template-columns: 25px 50px auto 70px;
+     margin-bottom: 1px;
+}
+
+.wrap td:first-child{
+     font-size: 20pt;
+}
+
+.wrap td:not(:first-child){
+     font-size: 14pt;
+}
+
+.wrap .subjectAndTeacher{
+     padding-left: 10px;
+     align-items: flex-start;
+}
+
+.wrap td:nth-child(2n){
+     background-color: rgb(148, 148, 148);
+}
+
+.wrap td:nth-child(2n + 1){
+     background-color: rgb(187, 187, 187);
+}
+
+@media screen and (max-width: 1000px){
+     .wrap table{
+          width: 70%;
+     }
+}
+
+@media screen and (max-width: 900px){
+     .wrap table{
+          width: 80%;
+     }
+}
+
+@media screen and (max-width: 871px){
+     .wrap td:not(:first-child){
+          font-size: 13pt;
+     }
+
+     .wrap caption{
+          font-size: 15pt;
+     }
+}
+
+@media screen and (max-width: 810px){
+     .wrap td:not(:first-child){
+          font-size: 12pt;
+     }
+
+     .wrap caption{
+          font-size: 14pt;
+     }
+}
+
+@media screen and (max-width: 780px){
+     .wrap table{
+          width: 90%;
+     }
+
+     .wrap td:not(:first-child){
+          font-size: 11pt;
+     }
+
+     .wrap caption{
+          font-size: 13pt;
+     }
+}
+
+@media screen and (max-width: 600px){
+     .wrap table{
+          width: 95%;
+     }
+
+     .wrap td:not(:first-child){
+          font-size: 10pt;
+     }
+
+     .wrap caption{
+          font-size: 12pt;
+     }
+}
+
+@media screen and (max-width: 200px){
+     .wrap caption{
+          font-size: 11pt;
+     }
+
+     .wrap td:not(:first-child){
+          font-size: 9pt;
+     }
+}
