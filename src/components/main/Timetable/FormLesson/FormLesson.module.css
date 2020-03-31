@@ -1,0 +1,35 @@
+.wrap{
+    background-color: white;
+    padding: 15px 10%;
+    margin-bottom: 15px;
+}
+
+.wrap button{
+    font-size: 12pt;
+}
+
+@media screen and (max-width: 956px){
+    .wrap{
+        padding: 15px 5%;
+    }
+}
+
+@media screen and (max-width: 871px){
+    .wrap button{
+         font-size: 11pt;
+    }
+}
+
+@media screen and (max-width: 810px){
+    .wrap button{
+        font-size: 10pt;
+    }
+}
+
+
+
+@media screen and (max-width: 200px){
+    .wrap button{
+        font-size: 9pt;
+    }
+}

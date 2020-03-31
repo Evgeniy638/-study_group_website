@@ -20,8 +20,15 @@
 
 .wrap tr{
      display: grid;
-     grid-template-columns: 25px 50px auto 70px;
      margin-bottom: 1px;
+}
+
+.wrapWithAdmonMode tr{
+     grid-template-columns: 25px 50px auto 70px 30px;
+}
+
+.wrapWithoutAdmonMode tr{
+     grid-template-columns: 25px 50px auto 70px;
 }
 
 .wrap td:first-child{
@@ -43,6 +50,18 @@
 
 .wrap td:nth-child(2n + 1){
      background-color: rgb(187, 187, 187);
+}
+
+.wrapWithAdmonMode td:last-child{
+     background-color: white;
+}
+
+.wrap .basket{
+     width: 20px;
+     height: 20px;
+     cursor: pointer;
+     margin-left: 0;
+     margin-top: 0;
 }
 
 @media screen and (max-width: 1000px){

@@ -1,0 +1,67 @@
+import React from 'react'
+import style from './FormLesson.module.css'
+import { Field, reduxForm, reset } from 'redux-form';
+import { maxLengthCreator, minLengthCreator, validatorTimeInput } from './../../../../assets/validators/validators';
+import InputField from './../../../../assets/components/InputField.js/InputField';
+
+const maxLength = maxLengthCreator(30)
+const minLength = minLengthCreator(1)
+
+const FormLesson = (props) => (
+    <div className={style.wrap}>
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                name="numberLesson"
+                placeholder="Номер урока"
+                component={InputField}
+                validate={[minLength, maxLength]}
+            />
+            <Field
+                name="beginTime"
+                placeholder="Время начала урока"
+                component={InputField}
+                validate={[minLength, maxLength, validatorTimeInput]}
+            />
+            <Field
+                name="endTime"
+                placeholder="Время конца урока"
+                component={InputField}
+                validate={[minLength, maxLength, validatorTimeInput]}
+            />
+            <Field
+                name="nameLesson"
+                placeholder="Название урока"
+                component={InputField}
+                validate={[minLength, maxLength]}
+            />
+            <Field
+                name="nameTeacher"
+                placeholder="ФИО преподавателя"
+                component={InputField}
+                validate={[minLength, maxLength]}
+            />
+            <Field
+                name="typeLesson"
+                placeholder="Тип урока"
+                component={InputField}
+                validate={[minLength, maxLength]}
+            />
+            <Field
+                name="numberCabinet"
+                placeholder="Номер кабинета"
+                component={InputField}
+                validate={[minLength, maxLength]}
+            />
+            <button className="button">Добавить урок</button>
+        </form>
+    </div>
+)
+
+const LessonReduxForm = reduxForm({
+    form: 'FormLesson',
+    onSubmitSuccess(result, dispatch) {
+         dispatch(reset('ordersTradesSearchForm'))
+    }
+})(FormLesson);
+
+export default LessonReduxForm

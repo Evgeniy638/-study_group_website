@@ -2,7 +2,7 @@ import React from 'react'
 import Timetable from './Timetable'
 
 export default class TimetableClassContainer extends React.Component {
-     componentWillMount() {
+     componentDidMount() {
           this.props.getTimetable()
      }
 
@@ -14,6 +14,7 @@ export default class TimetableClassContainer extends React.Component {
           return (
                <Timetable
                     timetable={this.props.timetable}
+                    adminMode={this.props.adminMode}
                />
           )
      }
