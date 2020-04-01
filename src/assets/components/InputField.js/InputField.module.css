@@ -6,6 +6,7 @@
 .errorMessage{
     background-color: #9e9e9e;
     border: 1px solid black;
+    box-sizing: border-box;
     padding: 5px;
     margin-left: 15px;
     font-size: 12pt;

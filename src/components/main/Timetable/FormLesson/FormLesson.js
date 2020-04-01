@@ -60,7 +60,7 @@ const FormLesson = (props) => (
 const LessonReduxForm = reduxForm({
     form: 'FormLesson',
     onSubmitSuccess(result, dispatch) {
-         dispatch(reset('ordersTradesSearchForm'))
+        dispatch(reset('ordersTradesSearchForm'))
     }
 })(FormLesson);
 

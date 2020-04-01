@@ -1,4 +1,4 @@
-export const getAdminMode = state => state.stateHeader.adminMode
+export const getAdminMode = state => state.stateHeader !== undefined ?state.stateHeader.adminMode :false
 
 export const getArrayMenu = state => state.stateHeader.arrayMenu
 
@@ -17,3 +17,7 @@ export const getIsDisabledSearchButton = state => state.stateNews.isDisabledSear
 export const getTimetableByState = state => state.stateTimetable.timetable
 
 export const getIsDisabledFormButton = state => state.stateTimetable.isDisabledFormButton
+
+export const getGroupByState = state => state.stateAboutGroup.group
+
+export const getIsDisabledPersonForm = state => state.stateAboutGroup.isDisabledPersonForm
