@@ -1,49 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Timetable.module.css'
 import FormLessonContainer from './FormLesson/FormLessonContainer';
-import basket from '../../../assets/images/basket.png'
+import Lesson from './Lesson/Lesson';
+import Confirm from '../../../assets/components/Confirm/Confirm';
 
-const Timetable = (props) => (
-    <>
-        {props.adminMode
-            ? <FormLessonContainer />
-            : null
-        }
-        <div className={`${style.wrap} ${props.adminMode ?style.wrapWithAdmonMode :style.wrapWithoutAdmonMode}`}>
-            <table>
-                <caption>Расписание на сегодня</caption>
-                <tbody>
-                    {props.timetable.map((lesson) => (
-                        <tr key={lesson.id}>
-                            <td>{lesson.lessonNumber}</td>
-                            <td>
-                                <span>{lesson.time.begin}</span>
-                                <span>{lesson.time.end}</span>
-                            </td>
-                            <td className={style.subjectAndTeacher}>
-                                <span>{lesson.subject}</span>
-                                <span>{lesson.teacher}</span>
-                            </td>
-                            <td>
-                                <span>{lesson.type}</span>
-                                <span>{lesson.cabinet}</span>
-                            </td>
-                            <td>
-                                {props.adminMode
-                                    ? <img
-                                        src={basket}
-                                        alt="мусорная корзина, корзина значок"
-                                        className={style.basket}
-                                    />
-                                    : null
-                                }
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    </>
-)
+const Timetable = (props) => {
+    let [isConfirm, setIsConfirm] = useState(false)
+    let [idLesson, setIdLesson] = useState()
+
+    let enableIsConfirm = (id) => {
+        setIsConfirm(true)
+        setIdLesson(id)
+    }
+
+    let disableIsConfirm = () => setIsConfirm(false)
+
+    return (
+        <>
+            {isConfirm
+                ? <Confirm
+                    question="Вы действительно хотете удалить этот урок?"
+                    action={() => { props.deleteLesson(idLesson) }}
+                    disableIsConfirm={disableIsConfirm}
+                />
+                : null
+            }
+            {props.adminMode
+                ? <FormLessonContainer />
+                : null
+            }
+            <div className={`${style.wrap} ${props.adminMode ? style.wrapWithAdmonMode : style.wrapWithoutAdmonMode}`}>
+                <table>
+                    <caption>Расписание на сегодня</caption>
+                    <tbody>
+                        {props.timetable.map((lesson) => (
+                            <Lesson
+                                key={lesson.id}
+                                {...lesson}
+                                deleteLesson={props.deleteLesson}
+                                adminMode={props.adminMode}
+                                enableIsConfirm={enableIsConfirm}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
+    )
+}
 
 export default Timetable

@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { getTimetableByState } from "../../../bll/selector";
-import { getTimetableThunkCreator, clearDataTimetableActionCreator } from "../../../bll/reducers/reducerTimetable";
+import { getTimetableThunkCreator, clearDataTimetableActionCreator, deleteLessonThunkCreator } from "../../../bll/reducers/reducerTimetable";
 import TimetableClassContainer from "./TimetableClassContainer";
 import { getAdminMode } from './../../../bll/selector';
 
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
      },
      clearData(){
           dispatch(clearDataTimetableActionCreator())
+     },
+     deleteLesson(id){
+          dispatch(deleteLessonThunkCreator(id))
      }
 })
 

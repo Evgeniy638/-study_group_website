@@ -15,6 +15,7 @@ export default class TimetableClassContainer extends React.Component {
                <Timetable
                     timetable={this.props.timetable}
                     adminMode={this.props.adminMode}
+                    deleteLesson={this.props.deleteLesson}
                />
           )
      }

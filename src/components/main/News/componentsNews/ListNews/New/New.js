@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import style from './New.module.css'
 import basket from '../../../../../../assets/images/basket.png'
-import ConfirmDeleteNews from './ConfirmDeleteNews/ConfirmDeleteNews';
+import Confirm from '../../../../../../assets/components/Confirm/Confirm'
 const New = (props) => {
      let date = new Date(props.date);
      
@@ -20,9 +20,10 @@ const New = (props) => {
      return(
           <>
                {isConfirmDeleteNews
-                    ?<ConfirmDeleteNews
-                         deleteNews={() => {props.deleteNews(props.id)}}
-                         disableIsConfirmDeleteNews = {disableIsConfirmDeleteNews}
+                    ?<Confirm
+                         question="Вы действительно хотете удалить эту новость?"
+                         action={() => {props.deleteNews(props.id)}}
+                         disableIsConfirm = {disableIsConfirmDeleteNews}
                     />
                     :null
                }

@@ -15,3 +15,5 @@ export const getTextFilter = state => state.stateNews.textFilter
 export const getIsDisabledSearchButton = state => state.stateNews.isDisabledSearchButton
 
 export const getTimetableByState = state => state.stateTimetable.timetable
+
+export const getIsDisabledFormButton = state => state.stateTimetable.isDisabledFormButton
