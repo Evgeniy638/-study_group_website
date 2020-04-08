@@ -2,7 +2,7 @@ import React from 'react'
 import style from './FormPerson.module.css'
 import { reduxForm, reset, Field } from 'redux-form'
 import InputField from '../../../../../assets/components/InputField.js/InputField'
-import { minLengthCreator, maxLengthCreator, validatorImage } from '../../../../../assets/validators/validators'
+import { minLengthCreator, maxLengthCreator } from '../../../../../assets/validators/validators'
 import InputImage from '../../../../../assets/components/InputImage/InputImage'
 
 const maxLength = maxLengthCreator(30)
@@ -32,7 +32,7 @@ const FromPerson = (props) => (
                <Field
                     name="image"
                     component={InputImage}
-                    validate={[validatorImage]}
+                    className={style.input_image}
                />
                <button
                     className="button"

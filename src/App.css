@@ -11,6 +11,16 @@ body{
      overflow-y: scroll;
 }
 
+input, textarea{
+     border: 1px solid gray;
+     outline: none;
+}
+
+input:focus, textarea:focus{
+     border: 1px solid black;
+     box-sizing: content-box;
+}
+
 a{
      text-decoration: none;
      color: #000;
@@ -36,6 +46,18 @@ li{
      border-color: black;
 }
 
+@media screen and (max-width: 831px){
+     body{
+          font-size: 11pt;
+     }
+}
+
+@media screen and (max-width:795px){
+     body{
+          font-size: 10pt;
+     }
+}
+
 @media screen and (max-width: 750px){
      body{
           width: 90%;
@@ -45,5 +67,11 @@ li{
 @media screen and (max-width: 669px){
      body{
           width: 100%;
+     }
+}
+
+@media screen and (max-width:350px){
+     body{
+          font-size: 9pt;
      }
 }

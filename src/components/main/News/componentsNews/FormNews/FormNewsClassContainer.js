@@ -1,42 +1,31 @@
 import React from 'react'
-import FromNews from './FormNews'
+import FormNewsRedux from './FormNews'
 
-export default class FormNewsClassContainer extends React.Component{
-     handler = (event) => {
-          event.preventDefault();
+export default class FormNewsClassContainer extends React.Component {
+     handle = (data) => {
+          console.log(data)
 
-          let elements = event.currentTarget
-
-          let text, date, file = null
-
-          date = new Date()
-
+          let date = new Date()
           const reader = new FileReader()
 
-          for(let i = 0; i < elements.length; i++){
-               if(elements[i].type === "textarea"){
-                    text = elements[i].value
-               }else if(elements[i].type === "file"){
-                    if (elements[i].files.length === 0)
-                         continue
-
-                    file = elements[i].files[0]
-               }
-          }
-          
           reader.onloadend = () => {
-               this.props.writeNews(text, date.getTime(), reader.result)
+               this.props.writeNews(data.text, date.getTime(), reader.result)
           }
-          
-          reader.readAsDataURL(file)
+
+          if (data.file !== undefined && data.file.length > 0) {
+               reader.readAsDataURL(data.file[0])
+          } else {
+               this.props.writeNews(data.text, date.getTime(), null)
+          }
      }
 
-     render(){
-          return(
-               <FromNews 
-                    writeNews={this.props.writeNews}
-                    handler={this.handler}
-               />
+     render() {
+          return (
+               <>
+                    <FormNewsRedux
+                         onSubmit={this.handle}
+                    />
+               </>
           )
      }
 }

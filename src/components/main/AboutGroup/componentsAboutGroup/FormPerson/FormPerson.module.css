@@ -4,6 +4,10 @@
      margin-bottom: 15px;
 }
  
+.input_image{
+    margin: 10px 0;
+}
+
  .wrap button{
      font-size: 12pt;
  }
@@ -25,8 +29,6 @@
          font-size: 10pt;
      }
  }
- 
- 
  
  @media screen and (max-width: 200px){
      .wrap button{

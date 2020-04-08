@@ -17,11 +17,3 @@ export const validatorTimeInput = value => {
 
     return "Время должно иметь вид чч:мм (например 10:06)"
 }
-
-export const validatorImage = value => {
-
-    return undefined
-
-    //image/jpeg
-    //image/png
-}

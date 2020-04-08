@@ -5,7 +5,7 @@ const InputImage = ({ input, meta, ...props }) => {
      let hasError = meta.error && meta.touched
 
      return (
-          <div className={style.wrap}>
+          <div className={`${style.wrap} ${props.className}`}>
                <div className={style.input_image_form}>
                     <input 
                          onChange={input.onChange}

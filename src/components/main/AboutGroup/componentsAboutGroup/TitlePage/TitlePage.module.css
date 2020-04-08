@@ -5,11 +5,17 @@
 
 .wrap > div{
      width: 80%;
-     margin: 0 auto;
+     margin: auto;
+     padding: 10px 0 15px 0;
      display: flex;
-     justify-content: center;
+     flex-direction: column;
+     align-items: center;
 }
 
 .wrap h1{
      margin-bottom: 15px;
+}
+
+.wrap p{
+     text-align: center;
 }
