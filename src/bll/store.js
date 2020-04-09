@@ -5,12 +5,14 @@ import reducerNews from './reducers/reducerNews';
 import reducerHeader from './reducers/reducerHeader';
 import thunk from "redux-thunk";
 import { reducer as reduxForm} from 'redux-form';
+import reducerApp from "./reducers/reducerApp";
 
 const reducer = combineReducers({
     stateAboutGroup: reducerAboutGroup,
     stateTimetable: reducerTimetable,
     stateNews: reducerNews,
     stateHeader: reducerHeader,
+    stateApp: reducerApp,
     form: reduxForm
 })
 

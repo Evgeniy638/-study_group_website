@@ -1,4 +1,4 @@
-import { getAdminMode } from "./bll/selector";
+import { getAdminMode, getHasInternetError } from "./bll/selector";
 import { connect } from "react-redux";
 import App from "./App";
 import { compose } from "redux";
@@ -7,7 +7,8 @@ import { enableAdminModeActionCreator, disableAdminModeActionCreator } from "./b
 
 
 const mapStateToProps = (state) => ({
-     adminMode: getAdminMode(state)
+     adminMode: getAdminMode(state),
+     hasInternetError: getHasInternetError(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

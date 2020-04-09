@@ -1,21 +1,54 @@
-import instance from "./instance"
+import instance, { NETWORK_ERROR } from "./instance"
 
 
 const apiAboutGroup = {
      async getGroup(){
-          const response = await instance.get('group?_sort=surname&_order=asc')
+          let response
 
-          return response.data
+          try{
+               response = await instance.get('group?_sort=surname&_order=asc')
+          }catch (error){
+               return {
+                    statusText: NETWORK_ERROR
+               }
+          }
+
+          return {
+               statusText: response.statusText,
+               data: response.data
+          }
      },
      async deletePerson(id){
-          const response = await instance.delete(`group/${id}`)
+          let response
 
-          return response.data
+          try{
+               response = await instance.delete(`group/${id}`)
+          }catch(error){
+               return {
+                    statusText: NETWORK_ERROR
+               }
+          }
+
+          return {
+               statusText: response.statusText,
+               data: response.data
+          }
      },
      async createPerson(person){
-          const response = await instance.post('group', person)
+          let response
 
-          return response.data
+          try {
+               response = await instance.post('group', person)               
+          } catch (error) {
+               return {
+                    statusText: NETWORK_ERROR
+               }
+          }
+
+          return {
+               statusText: response.statusText,
+               data: response.data
+          }
      }
 }
 

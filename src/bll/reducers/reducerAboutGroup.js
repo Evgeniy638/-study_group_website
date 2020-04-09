@@ -1,4 +1,6 @@
 import apiAboutGroup from "../../api/apiAboutGroup"
+import { NETWORK_ERROR } from "../../api/instance"
+import {toggleInternetErrorActionCreator} from "./reducerApp"
 
 const GET_GROUP = "GET_GROUP"
 const CLEAR_STATE_ABOUT_GROUP = "CLEAR_STATE_ABOUT_GROUP"
@@ -14,6 +16,9 @@ const initialState = {
 const reducerAboutGroup = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_IS_DISABLED_PERSON_FORM:
+            if (state.isDisabledPersonForm === action.isDisabledPersonForm)
+                return state
+
             return {
                 ...state,
                 isDisabledPersonForm: action.isDisabledPersonForm
@@ -66,21 +71,38 @@ const getGroupActionCreator = (group) => ({ type: GET_GROUP, group })
 const createPersonActionCreator = (person) => ({ type: CREATE_PERSON, person })
 
 export const createPersonThunkCreator = (person) => async (dispatch) => {
-    const newPerson = await apiAboutGroup.createPerson(person)
+    const {statusText, data} = await apiAboutGroup.createPerson(person)
 
-    dispatch(createPersonActionCreator(newPerson))
-
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось добавить человека"))
+        return null
+    }
+    
+    dispatch(toggleInternetErrorActionCreator(false))
+    dispatch(createPersonActionCreator(data))
     dispatch(toggleDisabledPersonFormActionCreator(false))
 }
 
 export const deletePersonThunkCreator = (id) => async (dispatch) => {
-    await apiAboutGroup.deletePerson(id)
+    const {statusText} = await apiAboutGroup.deletePerson(id)
+
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось удалить человека"))
+        return null
+    }
+    
+    dispatch(toggleInternetErrorActionCreator(false))
 
     dispatch(deletePersonActionCreator(id))
 }
 
 export const getGroupThunkCreator = () => async (dispatch) => {
-    const group = await apiAboutGroup.getGroup()
+    const {statusText, data} = await apiAboutGroup.getGroup()
 
-    dispatch(getGroupActionCreator(group))
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось получить список членов группы"))
+    } else {
+        dispatch(toggleInternetErrorActionCreator(false))
+        dispatch(getGroupActionCreator(data))
+    }
 }

@@ -1,4 +1,6 @@
 import apiTimetable from "../../api/apiTimetable"
+import { toggleInternetErrorActionCreator } from "./reducerApp"
+import { NETWORK_ERROR } from "../../api/instance"
 
 const GET_TIMETABLE = "GET_TIMETABLE"
 const CLEAR_DATA = "CLEAR_DATA"
@@ -55,16 +57,31 @@ const createLessonActionCreator = (lesson) => ({ type: CREATE_LESSON, lesson })
 const deleteLessonActionCreator = (id) => ({ type: DELETE_LESSON, id })
 
 export const getTimetableThunkCreator = () => async (dispatch) => {
-    const timetable = await apiTimetable.getTimetable()
-    dispatch(getTimetableActionCreator(timetable))
+    const {statusText, data} = await apiTimetable.getTimetable()
+
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось получить расписание"))
+        return null
+    }
+    
+    dispatch(toggleInternetErrorActionCreator(false))
+
+    dispatch(getTimetableActionCreator(data))
 }
 
 export const createLessonThunkCreator = (lesson) => async (dispatch) => {
-    const oldLesson = await apiTimetable.getLesson(lesson.lessonNumber)
+    const {statusText, data} = await apiTimetable.getLesson(lesson.lessonNumber)
 
-    if (oldLesson !== null && oldLesson !== undefined) {
-        const newLesson = await apiTimetable.putLesson(lesson, oldLesson.id)
-        dispatch(deleteLessonActionCreator(oldLesson.id))
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось создать урок"))
+        return null
+    }
+    
+    dispatch(toggleInternetErrorActionCreator(false))
+
+    if (data !== null && data !== undefined) {
+        const newLesson = await apiTimetable.putLesson(lesson, data.id)
+        dispatch(deleteLessonActionCreator(data.id))
         dispatch(createLessonActionCreator(newLesson))
         
         dispatch(toggleFormButtonActionCreator(false))
@@ -77,6 +94,14 @@ export const createLessonThunkCreator = (lesson) => async (dispatch) => {
 }
 
 export const deleteLessonThunkCreator = (id) => async (dispatch) => {
-    await apiTimetable.deleteLesson(id)
+    const {statusText} = await apiTimetable.deleteLesson(id)
+
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось удалить урок"))
+        return null
+    }
+    
+    dispatch(toggleInternetErrorActionCreator(false))
+
     dispatch(deleteLessonActionCreator(id))
 }

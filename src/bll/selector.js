@@ -21,3 +21,7 @@ export const getIsDisabledFormButton = state => state.stateTimetable.isDisabledF
 export const getGroupByState = state => state.stateAboutGroup.group
 
 export const getIsDisabledPersonForm = state => state.stateAboutGroup.isDisabledPersonForm
+
+export const getHasInternetError = state => state.stateApp.hasInternetError
+
+export const getTextError = state => state.stateApp.textError

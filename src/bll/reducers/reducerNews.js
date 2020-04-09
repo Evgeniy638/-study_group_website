@@ -1,4 +1,6 @@
 import apiNews from "../../api/apiNews";
+import { toggleInternetErrorActionCreator } from "./reducerApp";
+import { NETWORK_ERROR } from "../../api/instance";
 
 const GET_NEWS = "GET_NEWS"
 const CHANGE_CURRENT_PAGE = "CHANGE_CURRENT_PAGE"
@@ -107,23 +109,44 @@ export const getNews = (currentPage, pageSize, textFilter) => async (dispatch) =
         ?"" 
         :textFilter
 
-    let news = await apiNews.getListNews(currentPage, pageSize, text)
+    const {statusText, data} = await apiNews.getListNews(currentPage, pageSize, text)
+
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось получить новости"))
+        return null
+    }
     
-    if(news.length === 0)
+    dispatch(toggleInternetErrorActionCreator(false))
+    
+    if(data.length === 0)
         return dispatch(stopGetNewsActionCreator())
 
-    dispatch(getNewsActionCreator(news))
+    dispatch(getNewsActionCreator(data))
     dispatch(toggleSearchButtonActionCreator(false))
 }
 
 export const writeNews = (text, date, image) => async (dispatch) => {
-    let news = await apiNews.writeNews(text, date, image)
+    const {statusText, data} = await apiNews.writeNews(text, date, image)
 
-    dispatch(writeNewActionCreator(news))
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось опубликовать новость"))
+        return null
+    }
+    
+    dispatch(toggleInternetErrorActionCreator(false))
+
+    dispatch(writeNewActionCreator(data))
 }
 
 export const deleteNews = (id) => async (dispatch) => {
-    await apiNews.deleteNews(id)
+    const {statusText} = await apiNews.deleteNews(id)
+
+    if (statusText === NETWORK_ERROR){
+        dispatch(toggleInternetErrorActionCreator(true, "Не удалось удалить новость"))
+        return null
+    }
+    
+    dispatch(toggleInternetErrorActionCreator(false))
 
     dispatch(deleteNewsActionCreator(id))
 }

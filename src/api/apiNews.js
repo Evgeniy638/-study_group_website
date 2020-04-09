@@ -1,20 +1,53 @@
-import instance from "./instance"
+import instance, { NETWORK_ERROR } from "./instance"
 
 const apiNews = {
      async getListNews(currentPage, pageSize, textFilter){
-          const response = await instance.get(`news?_sort=id&_order=desc&_page=${currentPage}&_limit=${pageSize}&text_like=${textFilter}`)
+          let response
 
-          return response.data
+          try {
+               response = await instance.get(`news?_sort=id&_order=desc&_page=${currentPage}&_limit=${pageSize}&text_like=${textFilter}`)
+          }catch (error) {
+               return {
+                    statusText: NETWORK_ERROR
+               }
+          }
+
+          return {
+               statusText: response.statusText,
+               data: response.data
+          }
      },
      async writeNews(text, date, image){
-          const response = await instance.post('news', { text, date, image })
+          let response
 
-          return response.data
+          try{
+               response = await instance.post('news', { text, date, image })
+          }catch (error) {
+               return {
+                    statusText: NETWORK_ERROR
+               }
+          }
+
+          return {
+               statusText: response.statusText,
+               data: response.data
+          }
      },
      async deleteNews(id){
-          const response = await instance.delete(`news/${id}`)
+          let response
 
-          return response.data
+          try{
+               response = await instance.delete(`news/${id}`)
+          }catch (error) {
+               return {
+                    statusText: NETWORK_ERROR
+               }
+          }
+
+          return {
+               statusText: response.statusText,
+               data: response.data
+          }
      }
 }
 
