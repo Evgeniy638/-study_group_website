@@ -21,13 +21,14 @@ const initialState = {
     isDisabledSearchButton: false
 }
 
-const reducerNews = (state=initialState, action) => {
-    switch(action.type){
+const reducerNews = (state = initialState, action) => {
+    switch (action.type) {
         case CHANGE_CURRENT_PAGE_AND_REMOVE_NEWS:
             return {
                 ...state,
-                news:[],
-                currentPage: action.newCurrentPage
+                news: [],
+                currentPage: action.newCurrentPage,
+                isAllNews: false
             }
         case TOGGLE_SEARCH_BUTTON:
             return {
@@ -40,22 +41,33 @@ const reducerNews = (state=initialState, action) => {
                 news: state.news.filter(item => item.id !== action.id)
             }
         case WRITE_NEWS:
-            return{
+            return {
                 ...state,
-                news:[
+                news: [
                     action.news,
                     ...state.news
                 ]
             }
         case STOP_GET_NEWS:
-            return{
+            return {
                 ...state,
                 isAllNews: true
             }
         case GET_NEWS:
-            return{
+            let news = [...state.news, ...action.news].sort((n1, n2) => n2.id - n1.id)
+            
+            news = news.filter((value, index, arr) => {
+                for (let i = 0; i < index; i++) {
+                    if(value.id === arr[i].id)
+                        return false                    
+                }
+
+                return true
+            });
+            
+            return {
                 ...state,
-                news: [...state.news, ...action.news]
+                news
             }
         case CHANGE_CURRENT_PAGE:
             return {
@@ -63,14 +75,14 @@ const reducerNews = (state=initialState, action) => {
                 currentPage: action.newPage
             }
         case SET_TEXT_FILTER:
-            return{
+            return {
                 ...state,
-                textFilter: action.newTextFiler === undefined || action.newTextFiler === null 
-                    ?"" 
-                    :action.newTextFiler
+                textFilter: action.newTextFiler === undefined || action.newTextFiler === null
+                    ? ""
+                    : action.newTextFiler
             }
         case CLEAR_NEWS:
-            return{
+            return {
                 ...initialState
             }
         default:
@@ -90,62 +102,62 @@ export const toggleSearchButtonActionCreator = (isDisabledSearchButton) => ({
     isDisabledSearchButton
 })
 
-export const setTextFilterActionCreator = (newTextFiler) => ({type: SET_TEXT_FILTER, newTextFiler})
+export const setTextFilterActionCreator = (newTextFiler) => ({ type: SET_TEXT_FILTER, newTextFiler })
 
-const getNewsActionCreator = (news) => ({type: GET_NEWS, news})
+const getNewsActionCreator = (news) => ({ type: GET_NEWS, news })
 
-export const changeCurrentPageActionCreator = (newPage) => ({type: CHANGE_CURRENT_PAGE, newPage})
+export const changeCurrentPageActionCreator = (newPage) => ({ type: CHANGE_CURRENT_PAGE, newPage })
 
-const stopGetNewsActionCreator = () => ({type: STOP_GET_NEWS})
+const stopGetNewsActionCreator = () => ({ type: STOP_GET_NEWS })
 
-export const clearNewsActionCreator = () => ({type: CLEAR_NEWS})
+export const clearNewsActionCreator = () => ({ type: CLEAR_NEWS })
 
-const writeNewActionCreator = (news) => ({type: WRITE_NEWS, news})
+const writeNewActionCreator = (news) => ({ type: WRITE_NEWS, news })
 
-const deleteNewsActionCreator = (id) => ({type: DELETE_NEWS, id})
+const deleteNewsActionCreator = (id) => ({ type: DELETE_NEWS, id })
 
 export const getNews = (currentPage, pageSize, textFilter) => async (dispatch) => {
-    let text = textFilter === undefined || textFilter === null 
-        ?"" 
-        :textFilter
+    let text = textFilter === undefined || textFilter === null
+        ? ""
+        : textFilter
 
-    const {statusText, data} = await apiNews.getListNews(currentPage, pageSize, text)
+    const { statusText, data } = await apiNews.getListNews(currentPage, pageSize, text)
 
-    if (statusText === NETWORK_ERROR){
+    if (statusText === NETWORK_ERROR) {
         dispatch(toggleInternetErrorActionCreator(true, "Не удалось получить новости"))
-        return null
-    }
-    
-    dispatch(toggleInternetErrorActionCreator(false))
-    
-    if(data.length === 0)
-        return dispatch(stopGetNewsActionCreator())
+    } else {
+        dispatch(toggleInternetErrorActionCreator(false))
 
-    dispatch(getNewsActionCreator(data))
+        if (data.length === 0)
+            return dispatch(stopGetNewsActionCreator())
+
+        dispatch(getNewsActionCreator(data))
+    }
+
     dispatch(toggleSearchButtonActionCreator(false))
 }
 
 export const writeNews = (text, date, image) => async (dispatch) => {
-    const {statusText, data} = await apiNews.writeNews(text, date, image)
+    const { statusText, data } = await apiNews.writeNews(text, date, image)
 
-    if (statusText === NETWORK_ERROR){
+    if (statusText === NETWORK_ERROR) {
         dispatch(toggleInternetErrorActionCreator(true, "Не удалось опубликовать новость"))
         return null
     }
-    
+
     dispatch(toggleInternetErrorActionCreator(false))
 
     dispatch(writeNewActionCreator(data))
 }
 
 export const deleteNews = (id) => async (dispatch) => {
-    const {statusText} = await apiNews.deleteNews(id)
+    const { statusText } = await apiNews.deleteNews(id)
 
-    if (statusText === NETWORK_ERROR){
+    if (statusText === NETWORK_ERROR) {
         dispatch(toggleInternetErrorActionCreator(true, "Не удалось удалить новость"))
         return null
     }
-    
+
     dispatch(toggleInternetErrorActionCreator(false))
 
     dispatch(deleteNewsActionCreator(id))

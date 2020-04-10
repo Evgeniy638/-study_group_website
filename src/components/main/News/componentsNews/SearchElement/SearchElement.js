@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './SearchElement.module.css'
 
 const SearchElement = (props) => {
+     let [localTextFilter, setLocalTextFilter] = useState(props.textFilter)
+
      const handler = (event) => {
-          props.setTextFilter(event.currentTarget.value)
+          setLocalTextFilter(event.currentTarget.value)
      }
 
      const searchWithFilter = () => {
           props.disableSearchButton()
+          props.setTextFilter(localTextFilter)
           props.changeCurrentPageAndRemoveNews(1)
      }
 
@@ -25,7 +28,7 @@ const SearchElement = (props) => {
                          placeholder="Поиск по тексту"
                          className={style.search_text}
                          onChange={handler}
-                         value={props.textFilter}
+                         value={localTextFilter}
                          onKeyPress={handlerEnterPress}
                     />
                     <div className={style.search_icon}>

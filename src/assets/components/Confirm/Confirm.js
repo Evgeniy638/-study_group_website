@@ -10,7 +10,7 @@ const Confirm = (props) => {
      return (
           <div className={style.wrap}>
                <div className={style.confirm}>
-                    <div className={style.question}>{props.question}</div>
+                    <div className={style.question}><p>{props.question}</p></div>
                     <div
                          className={style.yes}
                     ><button onClick={action} className="button">Да</button></div>

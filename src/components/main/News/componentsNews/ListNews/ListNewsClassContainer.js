@@ -26,6 +26,10 @@ export default class ListNewsClassContainer extends React.Component{
 
 
      componentDidUpdate(prevProps){
+          if(!this.props.isAllNews && this.props.currentPage === 1){
+               window.addEventListener('scroll', this.handler)
+          }
+
           if(prevProps.currentPage !== this.props.currentPage){
                this.props.getNews(this.props.currentPage, this.props.pageSize, this.props.textFilter)
           }
@@ -34,9 +38,6 @@ export default class ListNewsClassContainer extends React.Component{
                this.handler()
           }else if(this.props.isAllNews){
                window.removeEventListener('scroll', this.handler)
-          }else if(!this.props.isAllNews && this.props.currentPage === 1){
-               window.addEventListener('scroll', this.handler)
-               this.props.getNews(this.props.currentPage, this.props.pageSize, this.props.textFilter)
           }
      }
 
@@ -46,15 +47,9 @@ export default class ListNewsClassContainer extends React.Component{
      }
 
      render(){
-          let buttons = []
-
-          for(let i = 1; i <= this.props.currentPage; i++) buttons.push(i)
-
-
           return(
                <ListNews 
                     news={this.props.news}
-                    buttons={buttons}
                     currentPage={this.props.currentPage}
                />
           )
