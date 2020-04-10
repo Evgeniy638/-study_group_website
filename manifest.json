@@ -1,0 +1,20 @@
+{
+  "short_name": "ИКБО-04-19",
+  "name": "ИКБО-04-19",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "MIREA_Gerb_Colour.png",
+      "type": "image/png",
+      "sizes": "512x512 192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
