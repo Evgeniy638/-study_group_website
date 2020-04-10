@@ -62,7 +62,7 @@ const apiTimetable = {
 
           if(response.data === null || response.data === undefined ||
                response.data[0] === null || response.data[0] === undefined)
-               return undefined
+               return {}
 
           return {
                statusText: response.statusText,

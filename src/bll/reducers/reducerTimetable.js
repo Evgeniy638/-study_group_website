@@ -82,12 +82,12 @@ export const createLessonThunkCreator = (lesson) => async (dispatch) => {
     if (data !== null && data !== undefined) {
         const newLesson = await apiTimetable.putLesson(lesson, data.id)
         dispatch(deleteLessonActionCreator(data.id))
-        dispatch(createLessonActionCreator(newLesson))
+        dispatch(createLessonActionCreator(newLesson.data))
         
         dispatch(toggleFormButtonActionCreator(false))
     } else {
         const newLesson = await apiTimetable.createLesson(lesson)
-        dispatch(createLessonActionCreator(newLesson))
+        dispatch(createLessonActionCreator(newLesson.data))
 
         dispatch(toggleFormButtonActionCreator(false))
     }

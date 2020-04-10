@@ -1,0 +1,24 @@
+.wrap{
+    background-color: white;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 16pt;
+}
+ 
+@media screen and (max-width: 871px){
+    .wrap{
+        font-size: 15pt;
+    }
+}
+  
+@media screen and (max-width: 810px){
+    .wrap{
+        font-size: 14pt;
+    }
+}
+  
+@media screen and (max-width: 200px){
+    .wrap{
+        font-size: 13pt;
+    }
+}
