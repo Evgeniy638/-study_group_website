@@ -6,9 +6,9 @@ import { PATH_ADMIN } from "../../paths"
 const Header = (props) => {
     return (
         <header className={style.wrap}>
-            <input type="checkbox" id="menu_checbox" className={style.menu_input}/>
-            <label 
-                htmlFor="menu_checbox" 
+            <input type="checkbox" id="menu_checbox" className={style.menu_input} />
+            <label
+                htmlFor="menu_checbox"
                 className={style.toggle_menu}
                 data-open="&#9776;"
                 data-close="&#10006;"
@@ -27,22 +27,16 @@ const Header = (props) => {
                 ))}
 
                 <li>
-                    {props.adminMode
-                        ? <NavLink
-                            to={props.location.pathname.replace(PATH_ADMIN, "")}
-                            className={style.admin}
-                            onClick={props.disableAdminMode}
-                        >
-                            зайти как пользователь
-                        </NavLink>
-                        : <NavLink
-                            to={PATH_ADMIN + props.location.pathname}
-                            className={style.user}
-                            onClick={props.enableAdminMode}
-                        >
-                            зайти как админ
-                        </NavLink>
-                    }
+                    <NavLink
+                        to={props.adminMode
+                            ? props.location.pathname.replace(PATH_ADMIN, "")
+                            : PATH_ADMIN + props.location.pathname
+                        }
+                        className={`${style.mode} ${props.adminMode ? style.admin : style.user}`}
+                        onClick={props.adminMode ? props.disableAdminMode : props.enableAdminMode}
+                    >
+                        {props.adminMode ? "зайти как пользователь" : "зайти как админ"}
+                    </NavLink>
                 </li>
             </ul>
         </header>

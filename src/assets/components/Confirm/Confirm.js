@@ -13,10 +13,10 @@ const Confirm = (props) => {
                     <div className={style.question}><p>{props.question}</p></div>
                     <div
                          className={style.yes}
-                    ><button onClick={action} className="button">Да</button></div>
+                    ><button onClick={action}>Да</button></div>
                     <div
                          className={style.no}
-                    ><button onClick={props.disableIsConfirm} className="button">Нет</button></div>
+                    ><button onClick={props.disableIsConfirm}>Нет</button></div>
                </div>
           </div>
      )

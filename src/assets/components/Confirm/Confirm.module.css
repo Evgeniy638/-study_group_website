@@ -18,6 +18,7 @@
      grid-template-columns: 1fr 1fr;
      grid-template-rows: auto auto;
      padding-bottom: 10px;
+     border-radius: 15px;
 }
 
 .question{
@@ -41,6 +42,16 @@
      align-items: center;
 }
 
+.yes button{
+     color: rgb(67, 223, 46);
+     background: rgb(144, 255, 159);
+     border: 2px solid rgb(67, 223, 46);
+}
+
+.yes button:hover{
+     border-color:  rgb(67, 223, 46)
+}
+
 .no{
      grid-row: 2;
      grid-template: 2;
@@ -49,7 +60,23 @@
      align-items: center;
 }
 
+.no button{
+     color: rgb(223, 46, 46);
+     background: rgb(255, 144, 144);
+     border: 2px solid rgb(223, 46, 46);
+}
+
+.no button:hover{
+     border-color: rgb(226, 17, 17);
+}
+
 .confirm button{
+     font-weight: 600;
      width: 40px;
      height: 30px;
+}
+
+.confirm button:hover{
+     cursor: pointer;
+     outline: none;
 }

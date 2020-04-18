@@ -128,8 +128,10 @@ export const getNews = (currentPage, pageSize, textFilter) => async (dispatch) =
     } else {
         dispatch(toggleInternetErrorActionCreator(false))
 
-        if (data.length === 0)
+        if (data.length === 0){
+            dispatch(toggleSearchButtonActionCreator(false))
             return dispatch(stopGetNewsActionCreator())
+        }
 
         dispatch(getNewsActionCreator(data))
     }

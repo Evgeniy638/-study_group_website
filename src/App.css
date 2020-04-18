@@ -4,7 +4,7 @@
 }
 
 body{
-     background-color: #dfdfdf;
+     background-color: #edeff0;
      width: 80%;
      margin: 0 auto;
      font-size: 12pt;
@@ -39,6 +39,7 @@ li{
 }
 
 .button{
+     outline: none;
      box-sizing: border-box;
      padding: 3px;
      cursor: pointer;
@@ -63,7 +64,7 @@ li{
      }
 }
 
-@media screen and (max-width: 669px){
+@media screen and (max-width: 675px){
      body{
           width: 100%;
      }

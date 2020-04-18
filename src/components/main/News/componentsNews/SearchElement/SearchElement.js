@@ -15,7 +15,7 @@ const SearchElement = (props) => {
      }
 
      const handlerEnterPress = (event) => {
-          if(event.charCode === 13){
+          if(event.charCode === 13 && !props.isDisabledSearchButton){
                searchWithFilter()
           }
      }
