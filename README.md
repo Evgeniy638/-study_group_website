@@ -14,8 +14,9 @@
 ### `npm start`
 
 ## Cсылка на github-pages
-Не сохраняет изменения, так как используется My JSON Server
 https://evgeniy638.github.io/-study_group_website/
+
+(Не сохраняет изменения, так как используется My JSON Server)
 
 ## Собранная версия
 лежит в папке `build` в ветке `master`
