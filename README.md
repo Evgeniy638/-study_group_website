@@ -4,11 +4,11 @@
 
 установите node modules следующей командой
 
-##npm install
+## npm install
 запустите базу данных локально
-##npm run dbstart
+## npm run dbstart
 запустите проект
-##npm start
+## npm start
 запускает локально проект (изменения сохраняюстся)
 
 Cсылка на github-pages: https://evgeniy638.github.io/-study_group_website/
